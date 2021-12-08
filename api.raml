@@ -1,0 +1,680 @@
+#%RAML 1.0
+title: Challenge Tecnico API
+description: Challenge para candidatos a Backend Developers
+mediaType: application/json
+
+
+/api/artist:
+  description: Collection of available Albums
+  get:
+    description: Get a list of Artists;.
+    queryParameters:
+      paged:
+        description: "get a list of artist, no need an id, you can add a paging.(?offset=0&limit=1)"
+        required: false
+        type: string
+        example: "?offset=0&limit=1"
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "artists": [
+                              {
+                                "artistId": "4dpARuHxo51G3z768sgnrY",
+                                "id": 1,
+                                "name": "Adele",
+                                "popularity": 94,
+                                "genres": "british soul,pop,pop soul,uk pop",
+                                "totalFallowers": null,
+                                "images": [
+                                    {
+                                        "height": 640,
+                                        "url": "https://i.scdn.co/image/ab6761610000e5eb68f6e5892075d7f22615bd17",
+                                        "width": 640
+                                    },
+                                    {
+                                        "height": 320,
+                                        "url": "https://i.scdn.co/image/ab6761610000517468f6e5892075d7f22615bd17",
+                                        "width": 320
+                                    },
+                                    {
+                                        "height": 160,
+                                        "url": "https://i.scdn.co/image/ab6761610000f17868f6e5892075d7f22615bd17",
+                                        "width": 160
+                                    }
+                                ],
+                                "uri": "spotify:artist:4dpARuHxo51G3z768sgnrY",
+                                "createdAt": "2021-10-31T20:08:31.000Z",
+                                "updatedAt": "2021-10-31T20:08:31.000Z"
+                              }
+                           ]
+                      }
+  /{artistId}:
+    description: Album entity
+    get:
+      description: Get a list of Artists;.
+      queryParameters:
+        artistId:
+          description: Get the artist with `artistId = {artistId}`
+          required: true
+          type: string
+          example: "/4dpARuHxo51G3z768sgnrY"
+     
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "artist":  {
+                                "artistId": "4dpARuHxo51G3z768sgnrY",
+                                "id": 1,
+                                "name": "Adele",
+                                "popularity": 94,
+                                "genres": "british soul,pop,pop soul,uk pop",
+                                "totalFallowers": null,
+                                "images": [
+                                    {
+                                        "height": 640,
+                                        "url": "https://i.scdn.co/image/ab6761610000e5eb68f6e5892075d7f22615bd17",
+                                        "width": 640
+                                    },
+                                    {
+                                        "height": 320,
+                                        "url": "https://i.scdn.co/image/ab6761610000517468f6e5892075d7f22615bd17",
+                                        "width": 320
+                                    },
+                                    {
+                                        "height": 160,
+                                        "url": "https://i.scdn.co/image/ab6761610000f17868f6e5892075d7f22615bd17",
+                                        "width": 160
+                                    }
+                                ],
+                                "uri": "spotify:artist:4dpARuHxo51G3z768sgnrY",
+                                "createdAt": "2021-10-31T20:08:31.000Z",
+                                "updatedAt": "2021-10-31T20:08:31.000Z"
+                            }
+                }
+  /search?ids={artistId}&offset=0&limit=2:
+    description: artist entity
+    get:
+      description: Get a list of artists.
+      queryParameters:
+        field:
+          description: "get a list of artists by ids, you can add a page. you can do (search?name=adele) and you will get a filter by fields"
+          required: true
+          type: string
+          example: "?ids=4dpARuHxo51G3z768sgnrY,4dpARuHxo51G3z768sgnrY&offset=0&limit=2"
+    
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "artists":[
+                            {
+                              "artistId": "4dpARuHxo51G3z768sgnrY",
+                              "id": 1,
+                              "name": "Adele",
+                              "popularity": 94,
+                              "genres": "british soul,pop,pop soul,uk pop",
+                              "totalFallowers": null,
+                              "images": [
+                                  {
+                                      "height": 640,
+                                      "url": "https://i.scdn.co/image/ab6761610000e5eb68f6e5892075d7f22615bd17",
+                                      "width": 640
+                                  },
+                                  {
+                                      "height": 320,
+                                      "url": "https://i.scdn.co/image/ab6761610000517468f6e5892075d7f22615bd17",
+                                      "width": 320
+                                  },
+                                  {
+                                      "height": 160,
+                                      "url": "https://i.scdn.co/image/ab6761610000f17868f6e5892075d7f22615bd17",
+                                      "width": 160
+                                  }
+                              ],
+                              "uri": "spotify:artist:4dpARuHxo51G3z768sgnrY",
+                              "createdAt": "2021-10-31T20:08:31.000Z",
+                              "updatedAt": "2021-10-31T20:08:31.000Z"
+                          }
+                        ]
+                }
+  /albums?ids={artistId}&offset=0&limit=2:
+    description: artist entity
+    get:
+      description: Get a list of artists.
+      queryParameters:
+        artistIds:
+          description: "get a list of albums by artist ID, you can add a page"
+          required: true
+          type: string
+          example: "?ids=4dpARuHxo51G3z768sgnrY,&offset=0&limit=2"
+    
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "albums":[
+                             {
+                              "artistId": "4dpARuHxo51G3z768sgnrY",
+                              "id": 105,
+                              "name": "25",
+                              "albumId": "6TVfiWmo8KtflUAmkK9gGF",
+                              "albumGroup": "album",
+                              "albumType": "album",
+                              "artists": null,
+                              "totalTracks": 11,
+                              "releaseDate": "2015-11-20",
+                              "uri": "spotify:album:6TVfiWmo8KtflUAmkK9gGF",
+                              "images": [
+                                  {
+                                      "height": 640,
+                                      "url": "https://i.scdn.co/image/ab67616d0000b273856b7a3e75db11219d0a8a5f",
+                                      "width": 640
+                                  },
+                                  {
+                                      "height": 300,
+                                      "url": "https://i.scdn.co/image/ab67616d00001e02856b7a3e75db11219d0a8a5f",
+                                      "width": 300
+                                  },
+                                  {
+                                      "height": 64,
+                                      "url": "https://i.scdn.co/image/ab67616d00004851856b7a3e75db11219d0a8a5f",
+                                      "width": 64
+                                  }
+                              ],
+                              "createdAt": "2021-10-31T20:08:34.000Z",
+                              "updatedAt": "2021-10-31T20:08:34.000Z"
+                          },
+                          {
+                              "artistId": "4dpARuHxo51G3z768sgnrY",
+                              "id": 106,
+                              "name": "21",
+                              "albumId": "2DAh6Er0J8AxZDu6W1pjAW",
+                              "albumGroup": "album",
+                              "albumType": "album",
+                              "artists": null,
+                              "totalTracks": 11,
+                              "releaseDate": "2011-02-22",
+                              "uri": "spotify:album:2DAh6Er0J8AxZDu6W1pjAW",
+                              "images": [
+                                  {
+                                      "height": 640,
+                                      "url": "https://i.scdn.co/image/ab67616d0000b2736c2d97f4d6f2b20890cd14aa",
+                                      "width": 640
+                                  },
+                                  {
+                                      "height": 300,
+                                      "url": "https://i.scdn.co/image/ab67616d00001e026c2d97f4d6f2b20890cd14aa",
+                                      "width": 300
+                                  },
+                                  {
+                                      "height": 64,
+                                      "url": "https://i.scdn.co/image/ab67616d000048516c2d97f4d6f2b20890cd14aa",
+                                      "width": 64
+                                  }
+                              ],
+                              "createdAt": "2021-10-31T20:08:34.000Z",
+                              "updatedAt": "2021-10-31T20:08:34.000Z"
+                          }
+                        ]
+                }
+  /songs?ids={artistId}&offset=0&limit=2:
+    description: artist entity
+    get:
+      description: Get a list of artists.
+      queryParameters:
+        artistIds:
+          description: "get a list of songs by artist ID, you can add a page"
+          required: true
+          type: string
+          example: "?ids=4dpARuHxo51G3z768sgnrY,&offset=0&limit=2"
+    
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "songs":[
+                             {
+                              "artistId": "4dpARuHxo51G3z768sgnrY",
+                              "id": 487,
+                              "name": "Send My Love (To Your New Lover)",
+                              "songId": "563SfWAHJs4FBZMkRN0IFN",
+                              "albumId": "6TVfiWmo8KtflUAmkK9gGF",
+                              "discNumber": 1,
+                              "durationMs": 223078,
+                              "explicit": 0,
+                              "trackNumber": 2,
+                              "type": "track",
+                              "isLocal": 0,
+                              "uri": null,
+                              "images": null,
+                              "createdAt": "2021-10-31T20:08:34.000Z",
+                              "updatedAt": "2021-10-31T20:08:34.000Z"
+                          },
+                          {
+                              "artistId": "4dpARuHxo51G3z768sgnrY",
+                              "id": 488,
+                              "name": "I Miss You",
+                              "songId": "6NdG17SJBXKJeYS67f7E74",
+                              "albumId": "6TVfiWmo8KtflUAmkK9gGF",
+                              "discNumber": 1,
+                              "durationMs": 348625,
+                              "explicit": 0,
+                              "trackNumber": 3,
+                              "type": "track",
+                              "isLocal": 0,
+                              "uri": null,
+                              "images": null,
+                              "createdAt": "2021-10-31T20:08:34.000Z",
+                              "updatedAt": "2021-10-31T20:08:34.000Z"
+                          },
+                        ]
+                }
+        404:
+          body:
+            application/json:
+              example: |
+                {"message": "artist not found"}
+
+
+
+/api/album:
+  description: Collection of available Albums
+  get:
+    description: Get a list of albums;.
+    queryParameters:
+      paged:
+        description: "get a list of albums, no need an id, you can add a paging.(?offset=0&limit=1)"
+        required: false
+        type: string
+        example: "?offset=0&limit=1"
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "albums": [
+                            {
+                                "artistId": "4dpARuHxo51G3z768sgnrY",
+                                "id": 105,
+                                "name": "25",
+                                "albumId": "6TVfiWmo8KtflUAmkK9gGF",
+                                "albumGroup": "album",
+                                "albumType": "album",
+                                "artists": null,
+                                "totalTracks": 11,
+                                "releaseDate": "2015-11-20",
+                                "uri": "spotify:album:6TVfiWmo8KtflUAmkK9gGF",
+                                "images": [
+                                    {
+                                        "height": 640,
+                                        "url": "https://i.scdn.co/image/ab67616d0000b273856b7a3e75db11219d0a8a5f",
+                                        "width": 640
+                                    },
+                                    {
+                                        "height": 300,
+                                        "url": "https://i.scdn.co/image/ab67616d00001e02856b7a3e75db11219d0a8a5f",
+                                        "width": 300
+                                    },
+                                    {
+                                        "height": 64,
+                                        "url": "https://i.scdn.co/image/ab67616d00004851856b7a3e75db11219d0a8a5f",
+                                        "width": 64
+                                    }
+                                ],
+                                "createdAt": "2021-10-31T20:08:34.000Z",
+                                "updatedAt": "2021-10-31T20:08:34.000Z"
+                            }
+                        ]
+                      }
+
+  /{albumId}:
+    description: Album entity
+    get:
+      description: Get a list of songs.
+      queryParameters:
+        field:
+          description: Get the song with `albumId = {albumId}`
+          required: true
+          type: string
+          example: "/6TVfiWmo8KtflUAmkK9gGF"
+     
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "album": {
+                              "artistId": "4dpARuHxo51G3z768sgnrY",
+                              "id": 105,
+                              "name": "25",
+                              "albumId": "6TVfiWmo8KtflUAmkK9gGF",
+                              "albumGroup": "album",
+                              "albumType": "album",
+                              "artists": null,
+                              "totalTracks": 11,
+                              "releaseDate": "2015-11-20",
+                              "uri": "spotify:album:6TVfiWmo8KtflUAmkK9gGF",
+                              "images": [
+                                  {
+                                      "height": 640,
+                                      "url": "https://i.scdn.co/image/ab67616d0000b273856b7a3e75db11219d0a8a5f",
+                                      "width": 640
+                                  },
+                                  {
+                                      "height": 300,
+                                      "url": "https://i.scdn.co/image/ab67616d00001e02856b7a3e75db11219d0a8a5f",
+                                      "width": 300
+                                  },
+                                  {
+                                      "height": 64,
+                                      "url": "https://i.scdn.co/image/ab67616d00004851856b7a3e75db11219d0a8a5f",
+                                      "width": 64
+                                  }
+                              ],
+                              "createdAt": "2021-10-31T20:08:34.000Z",
+                              "updatedAt": "2021-10-31T20:08:34.000Z"
+                          }
+                }
+
+  /search?ids={albumId},{albumId}&offset=0&limit=2:
+    description: albums entity
+    get:
+      description: Get a list of songs.
+      queryParameters:
+        field:
+          description: "get a list of albums by album ID, you can add a paging. you can do (search?{field}={filterValue}) and you will get filter by fields "
+          required: true
+          type: string
+          example: "?ids=6TVfiWmo8KtflUAmkK9gGF,2DAh6Er0J8AxZDu6W1pjAW&offset=0&limit=2"
+     
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "albums":[
+                            {
+                              "artistId": "4dpARuHxo51G3z768sgnrY",
+                              "id": 105,
+                              "name": "25",
+                              "albumId": "6TVfiWmo8KtflUAmkK9gGF",
+                              "albumGroup": "album",
+                              "albumType": "album",
+                              "artists": null,
+                              "totalTracks": 11,
+                              "releaseDate": "2015-11-20",
+                              "uri": "spotify:album:6TVfiWmo8KtflUAmkK9gGF",
+                              "images": [
+                                  {
+                                      "height": 640,
+                                      "url": "https://i.scdn.co/image/ab67616d0000b273856b7a3e75db11219d0a8a5f",
+                                      "width": 640
+                                  },
+                                  {
+                                      "height": 300,
+                                      "url": "https://i.scdn.co/image/ab67616d00001e02856b7a3e75db11219d0a8a5f",
+                                      "width": 300
+                                  },
+                                  {
+                                      "height": 64,
+                                      "url": "https://i.scdn.co/image/ab67616d00004851856b7a3e75db11219d0a8a5f",
+                                      "width": 64
+                                  }
+                              ],
+                              "createdAt": "2021-10-31T20:08:34.000Z",
+                              "updatedAt": "2021-10-31T20:08:34.000Z"
+                          },
+                          {
+                              "artistId": "4dpARuHxo51G3z768sgnrY",
+                              "id": 106,
+                              "name": "21",
+                              "albumId": "2DAh6Er0J8AxZDu6W1pjAW",
+                              "albumGroup": "album",
+                              "albumType": "album",
+                              "artists": null,
+                              "totalTracks": 11,
+                              "releaseDate": "2011-02-22",
+                              "uri": "spotify:album:2DAh6Er0J8AxZDu6W1pjAW",
+                              "images": [
+                                  {
+                                      "height": 640,
+                                      "url": "https://i.scdn.co/image/ab67616d0000b2736c2d97f4d6f2b20890cd14aa",
+                                      "width": 640
+                                  },
+                                  {
+                                      "height": 300,
+                                      "url": "https://i.scdn.co/image/ab67616d00001e026c2d97f4d6f2b20890cd14aa",
+                                      "width": 300
+                                  },
+                                  {
+                                      "height": 64,
+                                      "url": "https://i.scdn.co/image/ab67616d000048516c2d97f4d6f2b20890cd14aa",
+                                      "width": 64
+                                  }
+                              ],
+                              "createdAt": "2021-10-31T20:08:34.000Z",
+                              "updatedAt": "2021-10-31T20:08:34.000Z"
+                          }
+                        ]
+                }
+  /songs?ids={albumId}{albumId}&offset=0&limit=2:
+    description: albums entity
+    get:
+      description: Get a list of songs.
+      queryParameters:
+        albumIds:
+          description: "get a list of album songs by album ID, you can add a pagination"
+          required: true
+          type: string
+          example: "?ids=5duyQokC4FMcWPYTV9Gpf9,5duyQokC4FMcWPYTV9Gpf9&offset=0&limit=2"
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "songs":[
+                            {
+                              "artistId": "4dpARuHxo51G3z768sgnrY",
+                              "id": 507,
+                              "name": "Rumour Has It",
+                              "songId": "5mFMb5OHI3cN0UjITVztCj",
+                              "albumId": "5duyQokC4FMcWPYTV9Gpf9",
+                              "discNumber": 1,
+                              "durationMs": 223266,
+                              "explicit": 0,
+                              "trackNumber": 2,
+                              "type": "track",
+                              "isLocal": 0,
+                              "uri": null,
+                              "images": null,
+                              "createdAt": "2021-10-31T20:08:34.000Z",
+                              "updatedAt": "2021-10-31T20:08:34.000Z"
+                          },
+                          {
+                              "artistId": "4dpARuHxo51G3z768sgnrY",
+                              "id": 508,
+                              "name": "Turning Tables",
+                              "songId": "2eF2x1BkgilhaZ2AipRY8j",
+                              "albumId": "5duyQokC4FMcWPYTV9Gpf9",
+                              "discNumber": 1,
+                              "durationMs": 250000,
+                              "explicit": 0,
+                              "trackNumber": 3,
+                              "type": "track",
+                              "isLocal": 0,
+                              "uri": null,
+                              "images": null,
+                              "createdAt": "2021-10-31T20:08:34.000Z",
+                              "updatedAt": "2021-10-31T20:08:34.000Z"
+                          }
+                        ]
+                }
+        404:
+          body:
+            application/json:
+              example: |
+                {"message": "Album not found"}
+
+
+/api/song:
+  description: Collection of available songs
+  get:
+    description: Get a list of songs.
+    queryParameters:
+      paged:
+        description: "get a list of songs, no need for an id, you can add a paging. (?offset=0&limit=2)"
+        required: false
+        type: string
+        example: "offset=0&limit=2"
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "songs": [
+                            {
+                                "artistId": "4dpARuHxo51G3z768sgnrY",
+                                "id": 487,
+                                "name": "Send My Love (To Your New Lover)",
+                                "songId": "563SfWAHJs4FBZMkRN0IFN",
+                                "albumId": "6TVfiWmo8KtflUAmkK9gGF",
+                                "discNumber": 1,
+                                "durationMs": 223078,
+                                "explicit": 0,
+                                "trackNumber": 2,
+                                "type": "track",
+                                "isLocal": 0,
+                                "uri": null,
+                                "images": null,
+                                "createdAt": "2021-10-31T20:08:34.000Z",
+                                "updatedAt": "2021-10-31T20:08:34.000Z"
+                            },
+                            {
+                                "artistId": "4dpARuHxo51G3z768sgnrY",
+                                "id": 488,
+                                "name": "I Miss You",
+                                "songId": "6NdG17SJBXKJeYS67f7E74",
+                                "albumId": "6TVfiWmo8KtflUAmkK9gGF",
+                                "discNumber": 1,
+                                "durationMs": 348625,
+                                "explicit": 0,
+                                "trackNumber": 3,
+                                "type": "track",
+                                "isLocal": 0,
+                                "uri": null,
+                                "images": null,
+                                "createdAt": "2021-10-31T20:08:34.000Z",
+                                "updatedAt": "2021-10-31T20:08:34.000Z"
+                            }
+                         ]
+              }
+  /search?ids={songId},{songId}&offset=0&limit=2:
+    description: Song entity
+    get:
+      description: Get a list of songs.
+      queryParameters:
+        field:
+          description: "get a list of songs by song ID, you can add a paging. you can do (search?{field}={filterValue}) and you will get filter by fields"
+          required: true
+          type: string
+          example: "search?ids=6NdG17SJBXKJeYS67f7E74,6NdG17SJBXKJeYS67f7E74&offset=0&limit=2"
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "song":[
+                            {
+                                "artistId": "4dpARuHxo51G3z768sgnrY",
+                                "id": 488,
+                                "name": "I Miss You",
+                                "songId": "6NdG17SJBXKJeYS67f7E74",
+                                "albumId": "6TVfiWmo8KtflUAmkK9gGF",
+                                "discNumber": 1,
+                                "durationMs": 348625,
+                                "explicit": 0,
+                                "trackNumber": 3,
+                                "type": "track",
+                                "isLocal": 0,
+                                "uri": null,
+                                "images": null,
+                                "createdAt": "2021-10-31T20:08:34.000Z",
+                                "updatedAt": "2021-10-31T20:08:34.000Z"
+                            },
+                            {
+                                "artistId": "4dpARuHxo51G3z768sgnrY",
+                                "id": 488,
+                                "name": "I Miss You",
+                                "songId": "6NdG17SJBXKJeYS67f7E74",
+                                "albumId": "6TVfiWmo8KtflUAmkK9gGF",
+                                "discNumber": 1,
+                                "durationMs": 348625,
+                                "explicit": 0,
+                                "trackNumber": 3,
+                                "type": "track",
+                                "isLocal": 0,
+                                "uri": null,
+                                "images": null,
+                                "createdAt": "2021-10-31T20:08:34.000Z",
+                                "updatedAt": "2021-10-31T20:08:34.000Z"
+                            }
+                        ]
+                }
+  /{songId}:
+    description: Song entity
+    get:
+      description: Get a list of songs.
+      queryParameters:
+        songId:
+          description: "Get the song with `songId = {songId}`"
+          required: true
+          type: string
+          example: "/2eF2x1BkgilhaZ2AipRY8j"
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "song": {
+                                "artistId": "4dpARuHxo51G3z768sgnrY",
+                                "id": 488,
+                                "name": "I Miss You",
+                                "songId": "6NdG17SJBXKJeYS67f7E74",
+                                "albumId": "6TVfiWmo8KtflUAmkK9gGF",
+                                "discNumber": 1,
+                                "durationMs": 348625,
+                                "explicit": 0,
+                                "trackNumber": 3,
+                                "type": "track",
+                                "isLocal": 0,
+                                "uri": null,
+                                "images": null,
+                                "createdAt": "2021-10-31T20:08:34.000Z",
+                                "updatedAt": "2021-10-31T20:08:34.000Z"
+                            }
+                }
+        404:
+          body:
+            application/json:
+              example: |
+                {"message": "Song not found"}
+

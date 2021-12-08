@@ -1,0 +1,36 @@
+{
+  "name": "proyect_vacant",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "sequelize db:migrate && npx ts-node index.ts",
+    "dev": "sequelize db:migrate && nodemon index.ts",
+    "build": "sequelize db:migrate && npx tsc."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/validator": "^13.6.5",
+    "axios": "^0.24.0",
+    "axios-case-converter": "^0.9.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "lodash": "^4.17.21",
+    "lossless-json": "^1.0.5",
+    "moment": "^2.29.1",
+    "mysql2": "^2.3.2",
+    "raml2html": "^7.8.0",
+    "sequelize": "^6.8.0"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.1",
+    "@types/express": "^4.17.13",
+    "@types/lodash": "^4.14.176",
+    "@types/node": "^16.11.6",
+    "nodemon": "^2.0.14",
+    "sequelize-cli": "^6.2.0",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.4.4"
+  }
+}
