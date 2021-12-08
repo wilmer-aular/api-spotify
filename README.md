@@ -62,3 +62,7 @@ puede revisar el archivo database.sql. encontrara mas informacion sobre las migr
 ## RUTAS
 
 ## `comience accediendo a recursos por` ID
+
+## ejecute: `http://localhost:3011/api/artist/4dpARuHxo51G3z768sgnrY`;
+
+## en el archivo `api.html` esta una descripcion detallada de los `endpoint-api` mediante la libreria `raml`
